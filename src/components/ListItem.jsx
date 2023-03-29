@@ -5,7 +5,7 @@ function ListItem({ title, description, date, onDelete, onEdit, onCheck, complet
   const diff=dayDiff(date);
   console.log(diff)
   return (
-    <div className={`w-11/12 shadow-2xl flex items-center justify-between p-4 border-b rounded-xl my-4 ${diff>2?'bg-green-600':(diff<2 && diff>0)?'bg-orange-300':'bg-red-600'}`}>
+    <div className={`w-11/12 shadow-2xl flex items-center justify-between p-4 border-b rounded-xl my-4 ${diff>2?'bg-green-600':(diff<=2 && diff>0)?'bg-orange-300':'bg-red-600'}`}>
       <div className={`flex-grow  ${complete? 'blur-sm' : 'blur-0'}`}>
         <h2 className="text-lg font-medium">{title}</h2>
         <p className="text-sm text-gray-500">{description}</p>
