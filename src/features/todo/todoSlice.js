@@ -22,6 +22,7 @@ const todoSlice  = createSlice({
             const id = action.payload;
             state = state.filter((item) => item.id !== id);
             saveItemsToStorage(state) ;
+            return state ;
           },
     }
 }) ;
