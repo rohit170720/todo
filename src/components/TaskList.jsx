@@ -12,7 +12,7 @@ return diffDays ;
 }
 
 
-const checkPriority = (a, b)=>b.priority-a.priority ;
+const checkPriority = (a, b)=>Number(a.priority)-Number(b.priority) ;
 
 
 const TaskList = () => {
@@ -33,21 +33,25 @@ const TaskList = () => {
         
         if(e.target.name==='complete')
         {
-        setTodoData(prev=>{
-            return {...prev, complete:!prev.complete}
-        } )
+            console.log('before', todoData.complete);
+        setTodoData({...todoData, complete:!todoData.complete});
+
+         
+         
     }else {
         setTodoData({
             ...todoData,
             [e.target.name]:e.target.value  
         })
 }
-        console.log(todoData);  
+    console.log('after', todoData.complete);
+  
     }
 
    const editModal =(task) => {
     modalChange();
     setTodoData(task);
+    console.log('after asigning todo', todoData);
 
 
    } 
@@ -56,6 +60,7 @@ const TaskList = () => {
     const handleSubmit =(e)=> {
         e.preventDefault() ; 
         dispatch(updateItem({...todoData}))
+        console.log(todoData);
         modalChange() ;
     }
 
@@ -66,14 +71,14 @@ const TaskList = () => {
     return (<>
     <div className="w-full flex flex-col justify-center items-center">
         {
-            todo.map((item, index) =>(<ListItem key={index} title={item.title} description={item.description} date={item.deadline} complete={item.complete} onDelete={()=>{dispatch(deleteItem(item.id))}} onEdit ={editModal} onCheck ={()=>{dispatch(updateItem({...item, complete:true}))}} task={item} dayDiff={dayDiff} />))
+            [...todo].sort(checkPriority).map((item, index) =>(<ListItem key={index} title={item.title} description={item.description} date={item.deadline} complete={item.complete} onDelete={()=>{dispatch(deleteItem(item.id))}} onEdit ={editModal} onCheck ={()=>{dispatch(updateItem({...item, complete:true}))}} task={item} dayDiff={dayDiff} />))
         }
 
     </div>
     {
             openModal && (<div className="absolute h-full w-full top-0 left-0 flex justify-center items-center z-10 backdrop-blur-sm">
-                <div className="relative w-1/2 min-h-1/2 bg-white shadow-2xl rounded-xl" >
-                    <h3 className="my-2">Edit Task</h3>
+                <div className="relative w-full sm:w-1/2 min-h-1/2 bg-[#8EA7E9] shadow-2xl rounded-xl" >
+                    <h3 className="my-2 font-bold">Edit Task</h3>
                     <form className="flex flex-col items-center" onSubmit={handleSubmit}>
                         <div className="mt-10 w-11/12 flex flex-col items-start ">
                         <label htmlFor="title">Title:</label>

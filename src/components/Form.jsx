@@ -52,7 +52,7 @@ const Form = () => {
 
         {
             openModal && (<div className="absolute h-full w-full top-0 left-0 flex justify-center items-center z-10 backdrop-blur-sm">
-                <div className="relative w-1/2 min-h-1/2 bg-white shadow-2xl rounded-xl" >
+                <div className="relative w-full  sm:w-1/2 min-h-1/2 bg-[#B3FFAE] shadow-2xl rounded-xl" >
                     <form className="flex flex-col items-center" onSubmit={handleSubmit}>
                         <div className="mt-10 w-11/12 flex flex-col items-start ">
                         <label htmlFor="title">Title:</label>
