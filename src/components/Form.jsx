@@ -67,7 +67,7 @@ const Form = () => {
                         <div className="w-11/12 flex flex-col items-start ">
                         <label htmlFor="priority"> Priority:</label>
                        
-                        <select onChange={handleChange}name="priority" id="priority" className="w-full border rounded my-2 mt-1 h-[40px] px-2 py-1">
+                        <select value={todoData.priority} onChange={handleChange}name="priority" id="priority" className="w-full border rounded my-2 mt-1 h-[40px] px-2 py-1">
                             {[1,2,3].map(num=><option key={num} value={num}>{num}</option>)}
                         </select>
                         </div>
